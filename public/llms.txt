@@ -1,0 +1,7 @@
+# Muhammad Mubasher — Web & Mobile App Developer
+
+> Frontend, full-stack web app, and cross-platform mobile app development with React, Next.js, React Native, Flutter, and Node.
+
+## Pages
+
+- [Home](/): Services, selected projects, skills, process, case studies, testimonials, and contact.

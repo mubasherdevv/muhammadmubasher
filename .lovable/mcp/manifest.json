@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "sdk_version": "0.22.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://otjrnwkeqvnofdxqscvc.supabase.co/auth/v1",
+    "resource_name": "Muhammad Mubasher — Developer MCP",
+    "accepted_audiences": [
+      "authenticated"
+    ],
+    "jwks_uri": "https://otjrnwkeqvnofdxqscvc.supabase.co/auth/v1/.well-known/jwks.json"
+  },
+  "mcp": {
+    "server": {
+      "name": "mubasher-dev-mcp",
+      "version": "0.1.0",
+      "title": "Muhammad Mubasher — Developer"
+    },
+    "tools": [
+      {
+        "name": "list_services",
+        "title": "List development services",
+        "description": "Returns the web and mobile app development services offered, with a short description of each.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_contact",
+        "title": "Submit a contact request",
+        "description": "Send a new contact request to the agency (same as the public contact form on the site). Provide the sender's name, email, and message.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 80,
+              "description": "Full name of the person reaching out."
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 200,
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+              "description": "Reply-to email address."
+            },
+            "message": {
+              "type": "string",
+              "minLength": 10,
+              "maxLength": 1500,
+              "description": "What they want help with. Include goals, timeline, and any context."
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "message"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
