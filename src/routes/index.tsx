@@ -4,7 +4,7 @@ import { useRef, useState, useEffect, type ReactNode, type FormEvent } from "rea
 import {
   ArrowUpRight, Mail, Github, Linkedin, Youtube, Menu, X,
   Layout, Smartphone, Server, Cloud, Gauge, Code2, Loader2,
-  Zap, ShieldCheck, Sparkles, Layers, CheckCircle2,
+  Zap, ShieldCheck, Sparkles, Layers, CheckCircle2, Download,
 } from "lucide-react";
 import { z } from "zod";
 import { toast, Toaster } from "sonner";
@@ -282,7 +282,7 @@ const projects: ProjectItem[] = [
   {
     title: "Snap Bite - AI Calorie Tracker App",
     tag: "React Native · AI Nutrition",
-    year: "2025",
+    year: "2026",
     color: "oklch(0.62 0.22 145)",
     image: "", // Add screenshot URL or path here
     link: "https://appuiscreen.netlify.app/",
@@ -486,8 +486,16 @@ function HorizontalWork() {
                       </div>
                     )}
 
-                    <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-md border border-border/40 text-[11px] font-medium uppercase tracking-widest text-foreground">
-                      {p.year}
+                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-md border border-border/40 text-[11px] font-medium uppercase tracking-widest text-foreground">
+                        {p.year}
+                      </span>
+                      {p.apk && (
+                        <span className="px-2.5 py-1 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                          <Smartphone className="w-3 h-3" />
+                          <span>Android App</span>
+                        </span>
+                      )}
                     </div>
 
                     <div className="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-lg translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
@@ -512,13 +520,13 @@ function HorizontalWork() {
                       )}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border/40">
+                    <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-border/40">
                       {p.link && (
                         <a
                           href={p.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:opacity-90 transition-opacity shadow-sm"
                         >
                           <span>Live Preview</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -527,12 +535,12 @@ function HorizontalWork() {
                       {p.apk && (
                         <a
                           href={p.apk}
-                          target={p.apk !== "#" ? "_blank" : undefined}
-                          rel={p.apk !== "#" ? "noopener noreferrer" : undefined}
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted hover:bg-foreground hover:text-background text-foreground text-xs font-medium border border-border/80 transition-all shadow-sm"
                         >
-                          <Smartphone className="w-3.5 h-3.5" />
-                          <span>Get APK</span>
+                          <Download className="w-3.5 h-3.5 text-primary" />
+                          <span>Download APK</span>
                         </a>
                       )}
                       {p.github && (
@@ -540,7 +548,7 @@ function HorizontalWork() {
                           href={p.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card hover:border-foreground text-xs font-medium text-muted-foreground hover:text-foreground transition-all"
                         >
                           <Github className="w-3.5 h-3.5" />
                           <span>Code</span>
