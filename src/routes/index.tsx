@@ -428,11 +428,11 @@ function HorizontalWork() {
       className="relative"
       style={{ height: `${Math.max(250, projects.length * 70)}vh` }}
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden py-16">
-        <div className="px-6 mx-auto max-w-[1400px] w-full flex items-end justify-between">
+      <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden pt-16 sm:pt-20 pb-6 sm:pb-8">
+        <div className="px-6 mx-auto max-w-[1400px] w-full flex items-end justify-between shrink-0 mb-4 sm:mb-6">
           <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">— Selected Work</div>
-            <RevealHeading lines={["Recent", "projects."]} className="text-4xl md:text-6xl" />
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-2 sm:mb-3">— Selected Work</div>
+            <RevealHeading lines={["Recent", "projects."]} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl" />
           </div>
           <div className="hidden md:flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
             <span>Scroll to explore</span>
@@ -440,11 +440,11 @@ function HorizontalWork() {
           </div>
         </div>
 
-        <div className="my-auto w-full overflow-hidden">
+        <div className="my-auto w-full overflow-hidden flex items-center py-2">
           <motion.div
             ref={containerRef}
             style={{ x }}
-            className="flex gap-8 pl-6 sm:pl-12 pr-12 w-max will-change-transform"
+            className="flex gap-10 sm:gap-14 pl-6 sm:pl-16 pr-16 w-max will-change-transform items-stretch"
           >
             {projects.map((p) => {
               const isExternal = Boolean(p.link && p.link.startsWith("http"));
@@ -453,13 +453,13 @@ function HorizontalWork() {
               return (
                 <div
                   key={p.title}
-                  className="group relative flex flex-col rounded-2xl overflow-hidden border border-border/80 bg-card/90 backdrop-blur-sm shrink-0 w-[82vw] sm:w-[65vw] md:w-[50vw] lg:w-[42vw] max-w-[650px] shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300"
+                  className="group relative flex flex-col rounded-3xl overflow-hidden border border-border/80 bg-card shadow-md hover:shadow-2xl hover:border-primary/50 transition-all duration-300 shrink-0 w-[85vw] sm:w-[65vw] md:w-[48vw] lg:w-[38vw] max-w-[560px]"
                 >
                   <a
                     href={href}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
-                    className="block aspect-[16/10] relative overflow-hidden bg-muted"
+                    className="block h-[200px] sm:h-[230px] md:h-[250px] relative overflow-hidden bg-muted shrink-0"
                   >
                     {p.image ? (
                       <img
@@ -480,14 +480,14 @@ function HorizontalWork() {
                               "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 65%)",
                           }}
                         />
-                        <span className="font-display text-white text-3xl md:text-5xl uppercase text-center tracking-tight drop-shadow-md">
+                        <span className="font-display text-white text-2xl sm:text-3xl md:text-4xl uppercase text-center tracking-tight drop-shadow-md px-4">
                           {p.title}
                         </span>
                       </div>
                     )}
 
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-md border border-border/40 text-[11px] font-medium uppercase tracking-widest text-foreground">
+                    <div className="absolute top-3.5 left-3.5 flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-full bg-background/85 backdrop-blur-md border border-border/40 text-[11px] font-medium uppercase tracking-widest text-foreground">
                         {p.year}
                       </span>
                       {p.apk && (
@@ -498,35 +498,35 @@ function HorizontalWork() {
                       )}
                     </div>
 
-                    <div className="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-lg translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                      <ArrowUpRight className="w-5 h-5" />
+                    <div className="absolute bottom-3.5 right-3.5 w-10 h-10 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-lg translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                      <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </a>
 
-                  <div className="p-5 flex flex-col justify-between flex-1 gap-4">
+                  <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 gap-3 sm:gap-4 bg-card">
                     <div>
-                      <div className="flex items-center justify-between gap-2 mb-1.5">
-                        <h3 className="text-lg md:text-xl font-semibold tracking-tight group-hover:text-primary transition-colors">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h3 className="text-base sm:text-lg font-bold tracking-tight group-hover:text-primary transition-colors line-clamp-1">
                           {p.title}
                         </h3>
-                        <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground shrink-0">
+                        <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground shrink-0">
                           {p.tag}
                         </span>
                       </div>
                       {p.description && (
-                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mt-1">
+                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                           {p.description}
                         </p>
                       )}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-border/40">
+                    <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-border/50 mt-auto">
                       {p.link && (
                         <a
                           href={p.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium hover:opacity-90 transition-opacity shadow-sm"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:opacity-90 transition-opacity shadow-sm"
                         >
                           <span>Live Preview</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -537,7 +537,7 @@ function HorizontalWork() {
                           href={p.apk}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted hover:bg-foreground hover:text-background text-foreground text-xs font-medium border border-border/80 transition-all shadow-sm"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-secondary text-secondary-foreground hover:bg-foreground hover:text-background text-xs font-semibold border border-border transition-all shadow-sm"
                         >
                           <Download className="w-3.5 h-3.5 text-primary" />
                           <span>Download APK</span>
@@ -548,19 +548,10 @@ function HorizontalWork() {
                           href={p.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card hover:border-foreground text-xs font-medium text-muted-foreground hover:text-foreground transition-all"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-background hover:border-foreground text-xs font-medium text-muted-foreground hover:text-foreground transition-all"
                         >
                           <Github className="w-3.5 h-3.5" />
                           <span>Code</span>
-                        </a>
-                      )}
-                      {!p.link && !p.github && !p.apk && (
-                        <a
-                          href="#contact"
-                          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
-                        >
-                          <span>Inquire Case Study</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
                         </a>
                       )}
                     </div>
@@ -571,7 +562,7 @@ function HorizontalWork() {
           </motion.div>
         </div>
 
-        <div className="px-6 mx-auto max-w-[1400px] w-full flex items-center justify-between text-xs text-muted-foreground">
+        <div className="px-6 mx-auto max-w-[1400px] w-full flex items-center justify-between text-xs text-muted-foreground shrink-0 mt-2">
           <span>{projects.length} Featured Works</span>
           <a href="#contact" className="hover:text-foreground transition-colors">Have a project in mind? Let's talk →</a>
         </div>
