@@ -272,17 +272,30 @@ interface ProjectItem {
   color: string;
   image?: string;
   link?: string;
+  apk?: string;
   github?: string;
   description?: string;
 }
 
 const projects: ProjectItem[] = [
   {
+    title: "SnapBite",
+    tag: "React Native · AI Nutrition",
+    year: "2025",
+    color: "oklch(0.62 0.22 145)",
+    image: "", // Add screenshot URL or path here
+    link: "https://appuiscreen.netlify.app/",
+    apk: "#", // Placeholder APK download link
+    github: "https://github.com/mubasherdevv",
+    description:
+      "AI food scanner & calorie tracker with modern glassmorphic UI, dynamic macro rings, passwordless Supabase auth, and offline caching.",
+  },
+  {
     title: "Nimbus Dashboard",
     tag: "Next.js · SaaS Web App",
     year: "2025",
     color: "oklch(0.62 0.22 25)",
-    image: "", // Example: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+    image: "",
     link: "https://github.com/mubasherdevv",
     github: "https://github.com/mubasherdevv",
     description: "Cloud management and analytics dashboard for high-growth tech teams.",
@@ -498,7 +511,7 @@ function HorizontalWork() {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-3 pt-2 border-t border-border/40">
+                    <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border/40">
                       {p.link && (
                         <a
                           href={p.link}
@@ -508,6 +521,17 @@ function HorizontalWork() {
                         >
                           <span>Live Preview</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                      {p.apk && (
+                        <a
+                          href={p.apk}
+                          target={p.apk !== "#" ? "_blank" : undefined}
+                          rel={p.apk !== "#" ? "noopener noreferrer" : undefined}
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <Smartphone className="w-3.5 h-3.5" />
+                          <span>Get APK</span>
                         </a>
                       )}
                       {p.github && (
@@ -521,7 +545,7 @@ function HorizontalWork() {
                           <span>Code</span>
                         </a>
                       )}
-                      {!p.link && !p.github && (
+                      {!p.link && !p.github && !p.apk && (
                         <a
                           href="#contact"
                           className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
