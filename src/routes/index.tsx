@@ -287,7 +287,7 @@ const projects: ProjectItem[] = [
     image: "", // Add screenshot URL or path here
     link: "https://appuiscreen.netlify.app/",
     apk: "https://drive.google.com/file/d/1JUGNEtsNdmE98qswdiywx4hwfQfZkrww/view?usp=sharing", // Placeholder APK download link
-    github: "https://github.com/mubasherdevv",
+    github: "https://github.com/mubasherdevv/snap-bite",
     description:
       "AI food scanner & calorie tracker with modern glassmorphic UI, dynamic macro rings, passwordless Supabase auth, and offline caching.",
   },
@@ -331,15 +331,6 @@ const projects: ProjectItem[] = [
     github: "https://github.com/mubasherdevv",
     description: "Real-time dispatch and driver routing application.",
   },
-  {
-    title: "Pulse API",
-    tag: "Node · Realtime Backend",
-    year: "2023",
-    color: "oklch(0.5 0.18 300)",
-    image: "",
-    link: "https://github.com/mubasherdevv",
-    github: "https://github.com/mubasherdevv",
-    description: "High-throughput streaming API serving 50k+ websocket connections.",
   },
 ];
 
@@ -355,7 +346,7 @@ const skillGroups = [
   { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML / CSS", "Framer Motion"], level: 95 },
   { title: "Mobile", items: ["React Native", "Flutter", "Expo", "Push & Deep Links", "App Store / Play release"], level: 90 },
   { title: "Backend", items: ["Node.js", "REST & GraphQL", "PostgreSQL", "Supabase", "Auth & Payments"], level: 88 },
-  { title: "DevOps", items: ["Docker", "CI/CD", "AWS / Vercel", "Monitoring", "Performance budgets"], level: 80 },
+  { title: "DevOps", items: ["Docker", "CI/CD", " Vercel", "Monitoring", "Performance budgets"], level: 80 },
 ];
 
 const caseStudies = [
@@ -426,7 +417,7 @@ function HorizontalWork() {
       id="work"
       ref={targetRef}
       className="relative"
-      style={{ height: `${Math.max(250, projects.length * 70)}vh` }}
+      style={{ height: `calc(100vh + ${scrollDistance}px)` }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden pt-16 sm:pt-20 pb-6 sm:pb-8">
         <div className="px-6 mx-auto max-w-[1400px] w-full flex items-end justify-between shrink-0 mb-4 sm:mb-6">
