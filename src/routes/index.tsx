@@ -265,12 +265,68 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const projects = [
-  { title: "Nimbus Dashboard", tag: "Next.js · SaaS Web App", year: "2025", color: "oklch(0.62 0.22 25)" },
-  { title: "PayWave", tag: "React Native · Fintech App", year: "2025", color: "oklch(0.75 0.15 85)" },
-  { title: "Kart Studio", tag: "Frontend · E-commerce", year: "2024", color: "oklch(0.55 0.15 150)" },
-  { title: "RouteOne", tag: "Flutter · Delivery App", year: "2024", color: "oklch(0.4 0.05 260)" },
-  { title: "Pulse API", tag: "Node · Realtime Backend", year: "2023", color: "oklch(0.5 0.18 300)" },
+interface ProjectItem {
+  title: string;
+  tag: string;
+  year: string;
+  color: string;
+  image?: string;
+  link?: string;
+  github?: string;
+  description?: string;
+}
+
+const projects: ProjectItem[] = [
+  {
+    title: "Nimbus Dashboard",
+    tag: "Next.js · SaaS Web App",
+    year: "2025",
+    color: "oklch(0.62 0.22 25)",
+    image: "", // Example: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+    link: "https://github.com/mubasherdevv",
+    github: "https://github.com/mubasherdevv",
+    description: "Cloud management and analytics dashboard for high-growth tech teams.",
+  },
+  {
+    title: "PayWave",
+    tag: "React Native · Fintech App",
+    year: "2025",
+    color: "oklch(0.75 0.15 85)",
+    image: "",
+    link: "https://github.com/mubasherdevv",
+    github: "https://github.com/mubasherdevv",
+    description: "Cross-platform mobile payment wallet with biometric security.",
+  },
+  {
+    title: "Kart Studio",
+    tag: "Frontend · E-commerce",
+    year: "2024",
+    color: "oklch(0.55 0.15 150)",
+    image: "",
+    link: "https://github.com/mubasherdevv",
+    github: "https://github.com/mubasherdevv",
+    description: "Modern headless luxury e-commerce experience with sub-second page loads.",
+  },
+  {
+    title: "RouteOne",
+    tag: "Flutter · Delivery App",
+    year: "2024",
+    color: "oklch(0.4 0.05 260)",
+    image: "",
+    link: "https://github.com/mubasherdevv",
+    github: "https://github.com/mubasherdevv",
+    description: "Real-time dispatch and driver routing application.",
+  },
+  {
+    title: "Pulse API",
+    tag: "Node · Realtime Backend",
+    year: "2023",
+    color: "oklch(0.5 0.18 300)",
+    image: "",
+    link: "https://github.com/mubasherdevv",
+    github: "https://github.com/mubasherdevv",
+    description: "High-throughput streaming API serving 50k+ websocket connections.",
+  },
 ];
 
 const testimonials = [
@@ -325,64 +381,166 @@ const caseStudies = [
 
 function HorizontalWork() {
   const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: targetRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0vw", `-${projects.length * 82 - 100}vw`]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+
+  useEffect(() => {
+    const calculateDistance = () => {
+      if (containerRef.current) {
+        const totalWidth = containerRef.current.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        // Scroll exactly until the last item is in full view plus padding
+        const diff = totalWidth - viewportWidth + 32;
+        setScrollDistance(Math.max(0, diff));
+      }
+    };
+
+    calculateDistance();
+    window.addEventListener("resize", calculateDistance);
+    return () => window.removeEventListener("resize", calculateDistance);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end end"],
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
   return (
     <section
       id="work"
       ref={targetRef}
       className="relative"
-      style={{ height: `${projects.length * 100}vh` }}
+      style={{ height: `${Math.max(250, projects.length * 70)}vh` }}
     >
-      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
-        <div className="px-6 pt-24 pb-8 mx-auto max-w-[1400px] w-full flex items-end justify-between">
+      <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden py-16">
+        <div className="px-6 mx-auto max-w-[1400px] w-full flex items-end justify-between">
           <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">— Selected Work</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">— Selected Work</div>
             <RevealHeading lines={["Recent", "projects."]} className="text-4xl md:text-6xl" />
           </div>
-          <div className="hidden md:block text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Scroll ↓ to browse →
+          <div className="hidden md:flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+            <span>Scroll to explore</span>
+            <span className="text-primary font-bold">→</span>
           </div>
         </div>
 
-        <div className="flex-1 flex items-center overflow-hidden">
-          <motion.div style={{ x }} className="flex gap-6 pl-6 pr-[20vw] will-change-transform">
-            {projects.map((p) => (
-              <a
-                href="#contact"
-                key={p.title}
-                className="group relative block rounded-2xl overflow-hidden border border-border bg-card shrink-0 w-[78vw] md:w-[70vw] lg:w-[60vw] max-w-[900px]"
-              >
-                <div className="aspect-[16/10] relative overflow-hidden" style={{ background: p.color }}>
-                  <div
-                    className="absolute inset-0 opacity-20 mix-blend-overlay"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%)",
-                    }}
-                  />
-                  <div className="absolute top-5 left-5 text-xs uppercase tracking-widest text-white/80">
-                    {p.year}
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display text-white text-4xl md:text-6xl uppercase text-center px-8">
-                      {p.title}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-5 right-5 w-12 h-12 rounded-full bg-background text-foreground grid place-items-center translate-y-16 group-hover:translate-y-0 transition-transform duration-500">
-                    <ArrowUpRight className="w-5 h-5" />
+        <div className="my-auto w-full overflow-hidden">
+          <motion.div
+            ref={containerRef}
+            style={{ x }}
+            className="flex gap-8 pl-6 sm:pl-12 pr-12 w-max will-change-transform"
+          >
+            {projects.map((p) => {
+              const isExternal = Boolean(p.link && p.link.startsWith("http"));
+              const href = p.link || "#contact";
+
+              return (
+                <div
+                  key={p.title}
+                  className="group relative flex flex-col rounded-2xl overflow-hidden border border-border/80 bg-card/90 backdrop-blur-sm shrink-0 w-[82vw] sm:w-[65vw] md:w-[50vw] lg:w-[42vw] max-w-[650px] shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300"
+                >
+                  <a
+                    href={href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="block aspect-[16/10] relative overflow-hidden bg-muted"
+                  >
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div
+                        className="w-full h-full relative overflow-hidden flex items-center justify-center p-6"
+                        style={{ background: p.color }}
+                      >
+                        <div
+                          className="absolute inset-0 opacity-25 mix-blend-overlay"
+                          style={{
+                            backgroundImage:
+                              "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), transparent 65%)",
+                          }}
+                        />
+                        <span className="font-display text-white text-3xl md:text-5xl uppercase text-center tracking-tight drop-shadow-md">
+                          {p.title}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-background/80 backdrop-blur-md border border-border/40 text-[11px] font-medium uppercase tracking-widest text-foreground">
+                      {p.year}
+                    </div>
+
+                    <div className="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-lg translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                      <ArrowUpRight className="w-5 h-5" />
+                    </div>
+                  </a>
+
+                  <div className="p-5 flex flex-col justify-between flex-1 gap-4">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <h3 className="text-lg md:text-xl font-semibold tracking-tight group-hover:text-primary transition-colors">
+                          {p.title}
+                        </h3>
+                        <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground shrink-0">
+                          {p.tag}
+                        </span>
+                      </div>
+                      {p.description && (
+                        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mt-1">
+                          {p.description}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-3 pt-2 border-t border-border/40">
+                      {p.link && (
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                        >
+                          <span>Live Preview</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <Github className="w-3.5 h-3.5" />
+                          <span>Code</span>
+                        </a>
+                      )}
+                      {!p.link && !p.github && (
+                        <a
+                          href="#contact"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
+                        >
+                          <span>Inquire Case Study</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between p-5">
-                  <span className="text-sm font-medium">{p.title}</span>
-                  <span className="text-xs text-muted-foreground uppercase tracking-widest">
-                    {p.tag}
-                  </span>
-                </div>
-              </a>
-            ))}
+              );
+            })}
           </motion.div>
+        </div>
+
+        <div className="px-6 mx-auto max-w-[1400px] w-full flex items-center justify-between text-xs text-muted-foreground">
+          <span>{projects.length} Featured Works</span>
+          <a href="#contact" className="hover:text-foreground transition-colors">Have a project in mind? Let's talk →</a>
         </div>
       </div>
     </section>
