@@ -871,8 +871,8 @@ function Index() {
               >
                 {[
                   { k: "2.5+", v: "Years experience" },
-                  { k: "10+", v: "Projects delivered" },
-                  { k: "5", v: "Apps on stores" },
+                  { k: "10+", v: "Projects built" },
+                  { k: "15+", v: "APIs & Integrations" },
                   { k: "90+", v: "Avg Lighthouse score" },
                 ].map((s) => (
                   <motion.div key={s.v} variants={revealItem}>
