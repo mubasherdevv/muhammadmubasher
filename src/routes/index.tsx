@@ -393,15 +393,20 @@ function HorizontalWork() {
       if (containerRef.current) {
         const totalWidth = containerRef.current.scrollWidth;
         const viewportWidth = window.innerWidth;
-        // Scroll exactly until the last item is in full view plus padding
         const diff = totalWidth - viewportWidth + 32;
         setScrollDistance(Math.max(0, diff));
       }
     };
 
     calculateDistance();
-    window.addEventListener("resize", calculateDistance);
-    return () => window.removeEventListener("resize", calculateDistance);
+
+    if (containerRef.current) {
+      const resizeObserver = new ResizeObserver(() => {
+        calculateDistance();
+      });
+      resizeObserver.observe(containerRef.current);
+      return () => resizeObserver.disconnect();
+    }
   }, []);
 
   const { scrollYProgress } = useScroll({
