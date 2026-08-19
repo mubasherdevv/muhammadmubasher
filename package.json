@@ -11,6 +11,9 @@
     "lint": "eslint .",
     "format": "prettier --write ."
   },
+  "overrides": {
+    "content-type": "1.0.5"
+  },
   "dependencies": {
     "@fontsource/archivo-black": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
