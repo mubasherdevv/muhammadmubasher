@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence, type Variants } from "framer-motion";
 import { useRef, useState, useEffect, type ReactNode, type FormEvent } from "react";
 import {
-  ArrowUpRight, Mail, Github, Linkedin, Twitter, Menu, X,
+  ArrowUpRight, Mail, Github, Linkedin, Youtube, Menu, X,
   Layout, Smartphone, Server, Cloud, Gauge, Code2, Loader2,
   Zap, ShieldCheck, Sparkles, Layers, CheckCircle2,
 } from "lucide-react";
@@ -11,7 +11,7 @@ import { toast, Toaster } from "sonner";
 import { useServerFn } from "@tanstack/react-start";
 import { submitContact } from "@/lib/contact.functions";
 
-const CONTACT_EMAIL = "hello@mubasher.dev";
+const CONTACT_EMAIL = "withm345@gmail.com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Name is too short").max(80, "Name is too long"),
@@ -1253,9 +1253,33 @@ function Index() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <a href="#" aria-label="Twitter" className="grid place-items-center h-11 w-11 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"><Twitter className="w-5 h-5" aria-hidden="true" /></a>
-                      <a href="#" aria-label="LinkedIn" className="grid place-items-center h-11 w-11 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"><Linkedin className="w-5 h-5" aria-hidden="true" /></a>
-                      <a href="#" aria-label="GitHub" className="grid place-items-center h-11 w-11 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"><Github className="w-5 h-5" aria-hidden="true" /></a>
+                      <a
+                        href="https://github.com/mubasherdevv"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                        className="grid place-items-center h-11 w-11 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        <Github className="w-5 h-5" aria-hidden="true" />
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/muhammad-mubasher2/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        className="grid place-items-center h-11 w-11 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        <Linkedin className="w-5 h-5" aria-hidden="true" />
+                      </a>
+                      <a
+                        href="https://www.youtube.com/@mubasherdeveloper"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        className="grid place-items-center h-11 w-11 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        <Youtube className="w-5 h-5" aria-hidden="true" />
+                      </a>
                     </div>
                   </div>
                 </Reveal>
