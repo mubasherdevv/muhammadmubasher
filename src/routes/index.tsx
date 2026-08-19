@@ -286,7 +286,7 @@ const projects: ProjectItem[] = [
     color: "oklch(0.62 0.22 145)",
     image: "", // Add screenshot URL or path here
     link: "https://appuiscreen.netlify.app/",
-    apk: "#", // Placeholder APK download link
+    apk: "https://drive.google.com/file/d/1JUGNEtsNdmE98qswdiywx4hwfQfZkrww/view?usp=sharing", // Placeholder APK download link
     github: "https://github.com/mubasherdevv",
     description:
       "AI food scanner & calorie tracker with modern glassmorphic UI, dynamic macro rings, passwordless Supabase auth, and offline caching.",
