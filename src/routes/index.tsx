@@ -331,7 +331,6 @@ const projects: ProjectItem[] = [
     github: "https://github.com/mubasherdevv",
     description: "Real-time dispatch and driver routing application.",
   },
-  },
 ];
 
 const testimonials = [
@@ -346,7 +345,7 @@ const skillGroups = [
   { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML / CSS", "Framer Motion"], level: 95 },
   { title: "Mobile", items: ["React Native", "Flutter", "Expo", "Push & Deep Links", "App Store / Play release"], level: 90 },
   { title: "Backend", items: ["Node.js", "REST & GraphQL", "PostgreSQL", "Supabase", "Auth & Payments"], level: 88 },
-  { title: "DevOps", items: ["Docker", "CI/CD", " Vercel", "Monitoring", "Performance budgets"], level: 80 },
+  { title: "DevOps", items: ["Docker", " Vercel", "Monitoring", "Performance budgets"], level: 80 },
 ];
 
 const caseStudies = [
