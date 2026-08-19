@@ -12,7 +12,16 @@
     "format": "prettier --write ."
   },
   "overrides": {
-    "content-type": "1.0.5"
+    "content-type": "1.0.5",
+    "body-parser": {
+      "content-type": "1.0.5"
+    },
+    "type-is": {
+      "content-type": "1.0.5"
+    },
+    "express": {
+      "content-type": "1.0.5"
+    }
   },
   "dependencies": {
     "@fontsource/archivo-black": "^5.2.8",
